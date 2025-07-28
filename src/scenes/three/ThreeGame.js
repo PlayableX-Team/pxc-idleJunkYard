@@ -474,6 +474,11 @@ export default class ThreeGame {
           this.sellingLogs = false;
         });
       }
+
+      this.removeJunksNearArea(
+        this.sellPoint.getWorldPosition(new THREE.Vector3()),
+        5
+      );
     };
     globals.threeUpdateList.push(this.sellPoint);
   }
@@ -519,8 +524,47 @@ export default class ThreeGame {
         this.harvester.isVechileCaptured = false;
         // Kamera resetini çağır
       }
+
+      this.removeJunksNearArea(
+        this.garageArea.getWorldPosition(new THREE.Vector3()),
+        5
+      );
     };
     globals.threeUpdateList.push(this.garageArea);
+  }
+
+  // Yeni eklenen yardımcı fonksiyon
+  removeJunksNearArea(areaPosition, distance) {
+    if (!this.junks || this.junks.length === 0) return;
+
+    // Geriye doğru döngü ile safe removal
+    for (let i = this.junks.length - 1; i >= 0; i--) {
+      const junk = this.junks[i];
+      if (!junk || !junk.position) continue;
+
+      const junkDistance = junk.position.distanceTo(areaPosition);
+
+      if (junkDistance < distance) {
+        // Junk'ı sahneden kaldır
+        globals.threeScene.remove(junk);
+
+        // Physics body'sini kaldır
+        if (junk.body && globals.physicsManager) {
+          globals.physicsManager.world.removeBody(junk.body);
+        }
+
+        // Array'lerden kaldır
+        this.junks.splice(i, 1);
+
+        // globals.availableJunks'tan da kaldır
+        const globalIndex = globals.availableJunks.indexOf(junk);
+        if (globalIndex > -1) {
+          globals.availableJunks.splice(globalIndex, 1);
+        }
+
+        console.log(`Çöp silindi - Mesafe: ${junkDistance.toFixed(2)}`);
+      }
+    }
   }
 
   addUpgradeArea() {
