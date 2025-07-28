@@ -41,10 +41,12 @@ const data = window.gameData ?? {
   capacityFullTextFontStrokeThickness: 6,
 
   handSrc: null,
-  handScale: 0.5,
+  handScale: 1,
   handAngle: 0,
-  handPosX: 250,
-  handPosY: -100,
+  handPosX: 321,
+  handPosY: -70,
+  handPos2X: 420,
+  handPos2Y: -250,
 
   logoSrc: null,
   gameLogoScale: 1.5,
@@ -62,7 +64,7 @@ const data = window.gameData ?? {
   gameButtonTextScale: 1,
 
   //MONEY
-  userStartMoney: 100,
+  userStartMoney: 0,
 
   //LVL2
   junkSelledForLvl2: 100, // max 110 min 50 step:1
@@ -155,7 +157,7 @@ const data = window.gameData ?? {
 
   //VECHİLE
   capacityFullVechileArmAnimationColor: '#990000',
-  arrowScale: 1,
+  arrowScale: 1.6,
   arrowColor: '#00ff00',
 
   //HELPER SCREEN

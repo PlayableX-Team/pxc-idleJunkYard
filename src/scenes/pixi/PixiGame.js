@@ -516,7 +516,7 @@ export default class PixiGame {
       this.cashContainer.iHeight / 2
     );
 
-    const text = new PIXI.Text('100', {
+    const text = new PIXI.Text(data.userStartMoney, {
       fontFamily: 'customInGameFont',
       fontSize: data.moneyBarTextFontSize,
       fill: data.moneyBarTextFontColor,
@@ -578,6 +578,7 @@ export default class PixiGame {
     const money = PIXI.Sprite.from(TextureCache['money']);
     money.anchor.set(0.5);
     money.position.set(x, y);
+    money.scale.set(0.25);
     pixiScene.addChild(money);
 
     // this.money objesinin global pozisyonunu al

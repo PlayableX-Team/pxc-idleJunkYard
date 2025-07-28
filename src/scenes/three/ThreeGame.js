@@ -503,6 +503,12 @@ export default class ThreeGame {
             this.harvester.startTutorialCompleted = true;
           }
           this.cameraEffect();
+          if (
+            this.harvester.junksLoaded.length >=
+            globals.capacity + globals.extraCapacity
+          ) {
+            globals.pixiGame.capacityFullText.alpha = 0;
+          }
 
           this.garageArea.visible = true;
           globals.pixiGame.powerUpPanel.visible = true;
@@ -607,6 +613,12 @@ export default class ThreeGame {
   cameraReset() {
     const camera = globals.threeCamera;
     if (camera) {
+      if (
+        this.harvester.junksLoaded.length >=
+        globals.capacity + globals.extraCapacity
+      ) {
+        globals.pixiGame.capacityFullText.alpha = 1;
+      }
       gsap.to(camera, {
         fov: data.camFov,
         duration: 1,

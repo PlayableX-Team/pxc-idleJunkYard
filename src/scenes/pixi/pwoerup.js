@@ -107,7 +107,10 @@ export default class Powerup {
         new THREE.Euler(0, 0, 0),
         new THREE.Vector3(0, 2, 0)
       );
-      globals.pixiGame.tutorialHand.position.set(370, -260);
+      globals.pixiGame.tutorialHand.position.set(
+        data.handPos2X,
+        data.handPos2Y
+      );
       powerUpButton.interactive = false;
       event.stopPropagation(); // Event bubbling'i durdur
       console.log('clicked');
@@ -151,6 +154,7 @@ export default class Powerup {
         globals.userMoney -= this.cost;
         this.cost = this.cost * 2;
         powerUpButtonText.text = this.cost;
+        globals.threeGame.harvester.resetVechileArmToOriginal();
       }
       gsap.to(powerUpButton.scale, {
         x: powerUpButton.scale.x * 1.1,
