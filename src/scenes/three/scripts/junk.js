@@ -1,0 +1,105 @@
+import * as THREE from 'three';
+import globals from '../../../../globals';
+import gsap from 'gsap';
+import AudioManager from '../../../../engine/audio/AudioManager';
+import data from '../../../config/data';
+import * as CANNON from 'cannon-es';
+
+export default class Junk extends THREE.Object3D {
+  constructor(
+    model,
+    scale = 1,
+    position = new THREE.Vector3(0, 0, 0),
+    rotation = new THREE.Vector3(0, 0, 0),
+    body = null,
+    health,
+    price
+  ) {
+    super();
+    this.animations = {};
+    this.model = globals.cloneModel(model);
+    this.scale.setScalar(scale);
+    this.add(this.model);
+    this.position.copy(position);
+    // this.rotation.copy(rotation);
+    globals.threeScene.add(this);
+    this.body = body;
+    this.health = health;
+    this.price = price;
+    gsap.delayedCall(0.3, () => {
+      this.sleepBody();
+    });
+  }
+
+  addPhysicsBody() {
+    this.body = globals.physicsManager.createBodyFromObject(this.model, {
+      type: 'dynamic',
+      mass: 10,
+      sizeMultiplier: new THREE.Vector3(1, 1, 1),
+    });
+    this.body.position.copy(this.position);
+    // Quaternion'ı da kopyala
+    this.body.quaternion.copy(this.quaternion);
+
+    // Yüksek sürtünme için material oluştur
+    // const junkMaterial = new CANNON.Material('junk');
+    // junkMaterial.friction = 1; // Yüksek sürtünme (0-1 arası, 1 en yüksek)
+    // junkMaterial.frictionEquationStiffness = 1e8;
+    // junkMaterial.frictionEquationRelaxation = 3;
+    // junkMaterial.restitution = 0.01; // Düşük zıplama (daha stabil)
+
+    // this.body.material = junkMaterial;
+
+    // // Linear ve angular damping ekleyerek kayma ve dönmeyi azalt
+    this.body.linearDamping = 0.01; // Lineer hareketi yavaşlat
+    this.body.angularDamping = 0.01; // Açısal hareketi yavaşlat
+
+    // Body'yi sleep state'e sokma
+    //this.sleepBody();
+  }
+
+  // Body'yi sleep state'e sokma metodu
+  sleepBody() {
+    if (this.body) {
+      // Hızları sıfırla
+      this.body.velocity.set(0, 0, 0);
+      this.body.angularVelocity.set(0, 0, 0);
+
+      // Sleep state'ini SLEEPING olarak ayarla
+      this.body.sleepState = CANNON.BODY_SLEEP_STATES.SLEEPING;
+
+      // Alternatif olarak sleep() metodunu kullan
+      this.body.sleep();
+
+      console.log("Junk body sleep state'e sokuldu:", this.body.sleepState);
+    }
+  }
+
+  // Body'yi uyandırma metodu
+  wakeUpBody() {
+    if (this.body) {
+      this.body.wakeUp();
+      console.log('Junk body uyandırıldı:', this.body.sleepState);
+    }
+  }
+
+  // Sleep durumunu kontrol etme metodu
+  isSleeping() {
+    return (
+      this.body && this.body.sleepState === CANNON.BODY_SLEEP_STATES.SLEEPING
+    );
+  }
+
+  update(ratio, delta) {
+    // Body yoksa update yapma
+    if (!this.body) return;
+
+    // Eğer body sleeping değilse pozisyonu senkronize et
+    if (!this.isSleeping()) {
+      //this.body.quaternion.copy(this.quaternion);
+      this.position.copy(this.body.position);
+      this.quaternion.copy(this.body.quaternion);
+    }
+    // this.quaternion.copy(this.body.quaternion); // rotation yerine quaternion kullan
+  }
+}

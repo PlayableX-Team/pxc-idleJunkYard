@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="data:;base64,=" />
+    <!-- Empty favicon -->
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=no"
+    />
+    <title>Playable Ad</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      window.FBPlayableOnCTAClick = () => {
+        typeof FbPlayableAd === "undefined"
+          ? alert("FBPlayableAd.onCTAClick")
+          : FbPlayableAd.onCTAClick();
+      };
+    </script>
+  </body>
+</html>
