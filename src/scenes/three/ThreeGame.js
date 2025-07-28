@@ -488,6 +488,7 @@ export default class ThreeGame {
         if (!this.harvester.isVechileCaptured) {
           this.harvester.stopVehicle();
           this.harvester.isVechileCaptured = true;
+          this.harvester.stopCarSmokeQuarks(0.1);
           this.harvester.moveVechileToUpgradeArea(
             this.garageArea.getWorldPosition(new THREE.Vector3())
           );
