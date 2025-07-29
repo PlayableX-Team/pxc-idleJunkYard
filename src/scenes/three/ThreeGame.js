@@ -552,6 +552,7 @@ export default class ThreeGame {
           gsap.to(globals.pixiGame.powerUpPanel, {
             pixi: { alpha: 1 },
             duration: 0.5,
+            delay: 0.5,
             ease: 'power2.out',
           });
           // gsap.delayedCall(1.5, () => {
@@ -651,7 +652,7 @@ export default class ThreeGame {
     this.startYpos = data.camOffsetY;
 
     gsap.to(data, {
-      camOffsetY: data.camOffsetY - 5,
+      camOffsetY: data.camOffsetY - 8,
       duration: 1,
       ease: 'power2.inOut',
     });

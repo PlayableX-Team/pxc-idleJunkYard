@@ -196,13 +196,20 @@ export default class PixiGame {
     cont.resize = (w, h) => {
       globals.threesc;
       cont.scale.set(
-        Math.min((w * 0.55) / cont.iWidth, (h * 0.4) / cont.iHeight)
+        Math.min((w * 0.65) / cont.iWidth, (h * 0.5) / cont.iHeight) *
+          data.powerUpPanelScale
       );
 
       if (w < h) {
-        cont.position.set(w * 0.5, h * 0.75);
+        cont.position.set(
+          w * data.powerUpPanelPosXVertical,
+          h * data.powerUpPanelPosYVertical
+        );
       } else {
-        cont.position.set(w * 0.8, h * 0.5);
+        cont.position.set(
+          w * data.powerUpPanelPosXHorizontal,
+          h * data.powerUpPanelPosYHorizontal
+        );
       }
     };
     cont.resize(window.innerWidth, window.innerHeight);

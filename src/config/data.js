@@ -49,12 +49,12 @@ const data = window.gameData ?? {
   handPos2Y: -250,
 
   logoSrc: null,
-  gameLogoScale: 1.5,
+  gameLogoScale: 2,
   gameLogoPosX: 0.65,
   gameLogoPosY: 0.6,
 
   gameButtonSrc: null,
-  gameButtonScale: 1,
+  gameButtonScale: 1.5,
   gameButtonPosX: 0.5,
   gameButtonPosY: 0.6,
   gameButtonText: 'DOWNLOAD',
@@ -91,6 +91,12 @@ const data = window.gameData ?? {
   lvl2Junk5Health: 2, // label: capsule model health
 
   //POWERUPS CONFIG
+  powerUpPanelScale: 1,
+  powerUpPanelPosXVertical: 0.5,
+  powerUpPanelPosYVertical: 0.6,
+  powerUpPanelPosXHorizontal: 0.8,
+  powerUpPanelPosYHorizontal: 0.5,
+
   magnetPowerCost: 100,
   magnetPowerUpgradeEffect: 0.5, // min 0.1 max100 step:0.1
   magbetPowerStartAmount: 1, // min 1 max100 step:1
