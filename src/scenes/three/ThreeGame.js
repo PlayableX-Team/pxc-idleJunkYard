@@ -98,6 +98,58 @@ export default class ThreeGame {
     });
 
     this.addLvl2Pointer();
+    this.addSellAreaPointer();
+    this.addGarageAreaPointer();
+  }
+
+  addSellAreaPointer() {
+    this.sellAreaPointer = new THREE.Object3D();
+    let child = globals.cloneModel('arrow');
+
+    this.sellAreaPointer.add(child);
+    globals.threeScene.add(this.sellAreaPointer);
+
+    this.sellAreaPointer.position.copy(
+      this.sellPoint.getWorldPosition(new THREE.Vector3())
+    );
+    this.sellAreaPointer.position.y += 8;
+    this.sellAreaPointer.position.x -= 2;
+
+    this.sellAreaPointer.rotateX(-Math.PI / 2);
+    this.sellAreaPointer.scale.setScalar(0);
+
+    gsap.to(this.sellAreaPointer.position, {
+      y: '+=2',
+      duration: 0.5,
+      ease: 'power2.out',
+      repeat: -1,
+      yoyo: true,
+    });
+  }
+
+  addGarageAreaPointer() {
+    this.garageAreaPointer = new THREE.Object3D();
+    let child = globals.cloneModel('arrow');
+
+    this.garageAreaPointer.add(child);
+    globals.threeScene.add(this.garageAreaPointer);
+
+    this.garageAreaPointer.position.copy(
+      this.garageArea.getWorldPosition(new THREE.Vector3())
+    );
+    this.garageAreaPointer.position.y += 8;
+    this.garageAreaPointer.position.x += 2;
+
+    this.garageAreaPointer.rotateX(-Math.PI / 2);
+    this.garageAreaPointer.scale.setScalar(0);
+
+    gsap.to(this.garageAreaPointer.position, {
+      y: '+=2',
+      duration: 0.5,
+      ease: 'power2.out',
+      repeat: -1,
+      yoyo: true,
+    });
   }
 
   addLvl2Pointer() {
@@ -451,7 +503,7 @@ export default class ThreeGame {
       globals.availableJunks.push(junk);
     });
 
-    console.log(`${modelName} için ${points.length} adet junk oluşturuldu`);
+    // console.log(`${modelName} için ${points.length} adet junk oluşturuldu`);
   }
 
   addSellArea() {
@@ -501,6 +553,13 @@ export default class ThreeGame {
             ease: 'power2.out',
           });
         }
+        if (this.sellAreaPointer.scale.x > 0) {
+          gsap.to(this.sellAreaPointer.scale, {
+            x: 0,
+            y: 0,
+            z: 0,
+          });
+        }
       }
 
       this.removeJunksNearArea(
@@ -532,6 +591,13 @@ export default class ThreeGame {
               z: 0,
               duration: 0.5,
               ease: 'power2.out',
+            });
+          }
+          if (this.garageAreaPointer.scale.x > 0) {
+            gsap.to(this.garageAreaPointer.scale, {
+              x: 0,
+              y: 0,
+              z: 0,
             });
           }
           if (!this.isFirstUpgrade) {
@@ -673,7 +739,6 @@ export default class ThreeGame {
         ease: 'power2.inOut',
         onUpdate: () => {
           camera.updateProjectionMatrix();
-          console.log(camera.fov);
         },
         onComplete: () => {
           this.harvester.canMove = true;

@@ -78,7 +78,7 @@ const assets = {
 
     {
       name: 'tyre-v1',
-      src: require('@assets/models/junks/tyre-v2.glb'),
+      src: require('@assets/models/junks/tyre-last.glb'),
       type: 'glb',
     },
     {

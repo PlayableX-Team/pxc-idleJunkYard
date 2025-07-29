@@ -671,6 +671,13 @@ export default class Harvester extends THREE.Object3D {
 
                   this.firstCollect = true;
                   globals.tutorialTarget = sellPointWorldPos;
+                  gsap.to(globals.threeGame.sellAreaPointer.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                  });
                   gsap.to(globals.threeGame.sellAreaGreenBg.scale, {
                     x: 2.3,
                     y: 2.3,
@@ -699,6 +706,13 @@ export default class Harvester extends THREE.Object3D {
                     x: 2.3,
                     y: 2.3,
                     z: 2.3,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                  });
+                  gsap.to(globals.threeGame.sellAreaPointer.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
                     duration: 0.5,
                     ease: 'power2.out',
                   });
@@ -772,6 +786,13 @@ export default class Harvester extends THREE.Object3D {
             x: 2.3,
             y: 2.3,
             z: 2.3,
+            duration: 0.5,
+            ease: 'power2.out',
+          });
+          gsap.to(globals.threeGame.garageAreaPointer.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
             duration: 0.5,
             ease: 'power2.out',
           });
