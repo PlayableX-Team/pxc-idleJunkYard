@@ -23,6 +23,7 @@ const globals = {
   collectedJunks: 0,
   selledJunks: 0,
   capacity: data.magnetCapacityStartAmount,
+  camStartYpos: 0,
 };
 
 export default globals;

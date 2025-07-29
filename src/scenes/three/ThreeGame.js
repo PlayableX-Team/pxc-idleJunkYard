@@ -632,7 +632,9 @@ export default class ThreeGame {
 
     // Hem kameranın FOV'unu hem de data config'ini güncelle
     if (camera) {
-      this.camActive = false;
+      // this.camActive = false;
+      this.harvester.canMove = false;
+      // this.canFollow = false;
       console.log(camera.fov);
       const targetFOV = camera.fov - 15;
       gsap.to(camera, {
@@ -645,6 +647,14 @@ export default class ThreeGame {
         },
       });
     }
+
+    this.startYpos = data.camOffsetY;
+
+    gsap.to(data, {
+      camOffsetY: data.camOffsetY - 5,
+      duration: 1,
+      ease: 'power2.inOut',
+    });
   }
 
   cameraReset() {
@@ -667,6 +677,17 @@ export default class ThreeGame {
         onComplete: () => {
           this.harvester.canMove = true;
           // this.camActive = true;
+        },
+      });
+
+      // Orijinal node pozisyonuna geri dön
+      gsap.to(data, {
+        camOffsetY: this.startYpos, // veya orijinal pozisyon
+        duration: 1,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          this.canFollow = true;
+          this.harvester.canMove = true;
         },
       });
     }

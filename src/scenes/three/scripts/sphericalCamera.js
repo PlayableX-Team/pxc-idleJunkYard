@@ -52,6 +52,21 @@ export default class SphericalCamera {
 
   update() {
     if (this.followObject && globals.threeGame.canFollow) {
+      this.camData = {
+        radius: data.camRadius,
+        theta: data.camTheta,
+        phi: data.camPhi,
+        fov: data.camFov,
+        offsetX: data.camOffsetX,
+        offsetY: data.camOffsetY,
+        offsetZ: data.camOffsetZ,
+      };
+
+      this.offset.set(
+        this.camData.offsetX,
+        this.camData.offsetY,
+        this.camData.offsetZ
+      );
       this.node.position.copy(this.followObject.position);
 
       this.spherical.radius = this.camData.radius;
