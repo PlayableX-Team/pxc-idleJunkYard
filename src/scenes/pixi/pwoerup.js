@@ -129,13 +129,16 @@ export default class Powerup {
         AudioManager.playSFX('tap');
         this.increaseProgress(0.33);
         const magnets = globals.threeGame.harvester.magnets;
-        magnets[this.level].visible = false;
-        this.level++;
-        magnets[this.level].visible = true;
+
         globals.userMoney -= this.cost;
         globals.extraPower += this.upgradeAmount;
         this.cost = this.cost * 2;
         powerUpButtonText.text = this.cost;
+        if (this.level < magnets.length - 1) {
+          magnets[this.level].visible = false;
+          this.level++;
+          magnets[this.level].visible = true;
+        }
       } else if (this.upgradeType == 'range') {
         if (globals.userMoney < this.cost) return;
         AudioManager.playSFX('upgrade');

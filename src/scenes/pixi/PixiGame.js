@@ -932,6 +932,6 @@ export default class PixiGame {
     //     (this.cashContainer.iHeight * 0.9) / this.cashContainer.text.height
     //   )
     // );
-    console.log(globals.collectedJunks, globals.selledJunks);
+    // console.log(globals.collectedJunks, globals.selledJunks);
   }
 }
