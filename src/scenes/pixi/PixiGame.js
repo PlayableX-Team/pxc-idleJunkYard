@@ -23,6 +23,7 @@ export default class PixiGame {
     pixiScene = globals.pixiScene;
     pixiApp = globals.pixiApp;
     globals.pixiGame = this;
+    this.mainSceneElements = [];
   }
 
   start() {
@@ -50,6 +51,16 @@ export default class PixiGame {
 
     globals.EventEmitter.on('gameFinished', () => {
       if (globals.gmovr) return;
+
+      // pixiScene'nin tüm child elementlerini alpha 0 yap
+      pixiScene.children.forEach((child) => {
+        gsap.to(child, {
+          pixi: { alpha: 0 },
+          duration: 0.5,
+          ease: 'power2.out',
+        });
+      });
+
       globals.EventEmitter.emit('endcard_shown');
       new Endcard(true);
       globals.gmovr = true;
@@ -84,6 +95,8 @@ export default class PixiGame {
     this.powerUps = [];
     this.addPowerUpPanel();
     this.addCapacityFullText();
+    globals.userMoney = data.userStartMoney;
+    this.capacity = data.magnetCapacityStartAmount;
 
     // gsap.delayedCall(1, () => {
     //   new Endcard(true);
@@ -448,6 +461,7 @@ export default class PixiGame {
       repeat: -1,
       yoyo: true,
     });
+    this.mainSceneElements.push(cont);
 
     cont.addChild(button);
     cont.iWidth = button.width;

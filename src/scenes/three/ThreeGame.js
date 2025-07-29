@@ -51,6 +51,27 @@ export default class ThreeGame {
     this.sellPoint = null;
     this.garageArea = null;
     this.sellPointDistanceThreshold = 4;
+
+    this.lvl1Junk1Health = data.lvl1Junk1Health;
+    this.lvl1Junk2Health = data.lvl1Junk2Health;
+    this.lvl1Junk3Health = data.lvl1Junk3Health;
+    this.lvl1Junk4Health = data.lvl1Junk4Health;
+    this.lvl2Junk1Health = data.lvl2Junk1Health;
+    this.lvl2Junk2Health = data.lvl2Junk2Health;
+    this.lvl2Junk3Health = data.lvl2Junk3Health;
+    this.lvl2Junk4Health = data.lvl2Junk4Health;
+    this.lvl2Junk5Health = data.lvl2Junk5Health;
+
+    this.lvl1Junk1Price = data.lvl1Junk1Price;
+    this.lvl1Junk2Price = data.lvl1Junk2Price;
+    this.lvl1Junk3Price = data.lvl1Junk3Price;
+    this.lvl1Junk4Price = data.lvl1Junk4Price;
+    this.lvl2Junk1Price = data.lvl2Junk1Price;
+    this.lvl2Junk2Price = data.lvl2Junk2Price;
+    this.lvl2Junk3Price = data.lvl2Junk3Price;
+    this.lvl2Junk4Price = data.lvl2Junk4Price;
+    this.lvl2Junk5Price = data.lvl2Junk5Price;
+    this.capacity = data.magnetCapacityStartAmount;
   }
 
   start() {
@@ -74,6 +95,7 @@ export default class ThreeGame {
     globals.upgradesPurchased = 0;
 
     globals.tutorialTarget = new THREE.Vector3(5, 0, -32);
+
     this.createLvl1Junks();
     this.createLvl2Junks();
     this.addGroundCollider();
@@ -395,26 +417,26 @@ export default class ThreeGame {
       {
         model: 'tyre-v1',
         points: this.tyreObjectPoints,
-        health: data.lvl1Junk1Health,
-        price: data.lvl1Junk1Price,
+        health: this.lvl1Junk1Health,
+        price: this.lvl1Junk1Price,
       },
       {
         model: 'junk_07-v1',
         points: this.washingMachinePoints,
-        health: data.lvl1Junk2Health,
-        price: data.lvl1Junk2Price,
+        health: this.lvl1Junk2Health,
+        price: this.lvl1Junk2Price,
       },
       {
         model: 'junk_00-v1',
         points: this.grillPoints,
-        health: data.lvl1Junk3Health,
-        price: data.lvl1Junk3Price,
+        health: this.lvl1Junk3Health,
+        price: this.lvl1Junk3Price,
       },
       {
         model: 'junk_06-v1',
         points: this.windowPoints,
-        health: data.lvl1Junk4Health,
-        price: data.lvl1Junk4Price,
+        health: this.lvl1Junk4Health,
+        price: this.lvl1Junk4Price,
       },
     ];
 
@@ -426,32 +448,32 @@ export default class ThreeGame {
       {
         model: 'junk_02-v1',
         points: this.lvl2barrelPoints,
-        health: data.lvl2Junk1Health,
-        price: data.lvl2Junk1Price,
+        health: this.lvl2Junk1Health,
+        price: this.lvl2Junk1Price,
       },
       {
         model: 'junk_04-v1',
         points: this.lvl2distortedBarrelPoints,
-        health: data.lvl2Junk2Health,
-        price: data.lvl2Junk2Price,
+        health: this.lvl2Junk2Health,
+        price: this.lvl2Junk2Price,
       },
       {
         model: 'tv-v1',
         points: this.lvl2tvPoints,
-        health: data.lvl2Junk3Health,
-        price: data.lvl2Junk3Price,
+        health: this.lvl2Junk3Health,
+        price: this.lvl2Junk3Price,
       },
       {
         model: 'junk_10-v1',
         points: this.lvl2trashPoints,
-        health: data.lvl2Junk4Health,
-        price: data.lvl2Junk4Price,
+        health: this.lvl2Junk4Health,
+        price: this.lvl2Junk4Price,
       },
       {
         model: 'junk_08-v1',
         points: this.lvl2capsulePoints,
-        health: data.lvl2Junk5Health,
-        price: data.lvl2Junk5Price,
+        health: this.lvl2Junk5Health,
+        price: this.lvl2Junk5Price,
       },
     ];
 
@@ -608,7 +630,7 @@ export default class ThreeGame {
           this.cameraEffect();
           if (
             this.harvester.junksLoaded.length >=
-            globals.capacity + globals.extraCapacity
+            this.capacity + globals.extraCapacity
           ) {
             globals.pixiGame.capacityFullText.alpha = 0;
           }
@@ -729,7 +751,7 @@ export default class ThreeGame {
     if (camera) {
       if (
         this.harvester.junksLoaded.length >=
-        globals.capacity + globals.extraCapacity
+        this.capacity + globals.extraCapacity
       ) {
         globals.pixiGame.capacityFullText.alpha = 1;
       }

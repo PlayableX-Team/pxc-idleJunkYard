@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { randFloat } from 'three/src/math/MathUtils.js';
 import globals from '../../../../globals';
 import gsap from 'gsap';
 import AudioManager from '../../../../engine/audio/AudioManager';
@@ -559,7 +560,10 @@ export default class Harvester extends THREE.Object3D {
     );
 
     globals.availableJunks.forEach((junk) => {
-      if (this.junksLoaded.length >= globals.capacity + globals.extraCapacity) {
+      if (
+        this.junksLoaded.length >=
+        globals.threeGame.capacity + globals.extraCapacity
+      ) {
         gsap.killTweensOf(junk.scale);
         return;
       }
@@ -625,8 +629,22 @@ export default class Harvester extends THREE.Object3D {
           // magnetParent'e attach et
           this.magnetParent.attach(junk);
 
-          // Hedef pozisyon (magnetParent merkezine)
-          let destPos = new THREE.Vector3(0, 0, 0);
+          // Hedef pozisyon hesaplama
+          let destPos;
+
+          if (this.magnets && this.magnets[3] && this.magnets[3].visible) {
+            // Rastgele dairesel toplama
+            let sphericalPos = new THREE.Spherical(
+              randFloat(1.7, 2), // rastgele yarıçap
+              Math.PI / 2, // yatay düzlem
+              randFloat(0, Math.PI * 2) // rastgele açı
+            );
+            destPos = new THREE.Vector3().setFromSpherical(sphericalPos);
+            destPos.y = randFloat(-0.3, 0.3); // Y'de küçük varyasyon
+          } else {
+            // Normal toplama (merkeze)
+            destPos = new THREE.Vector3(0, 0, 0);
+          }
 
           gsap.to(junk.position, {
             x: destPos.x,
@@ -655,7 +673,7 @@ export default class Harvester extends THREE.Object3D {
               junk.scale.set(1, 1, 1);
               if (
                 this.junksLoaded.length >=
-                globals.capacity + globals.extraCapacity
+                globals.threeGame.capacity + globals.extraCapacity
               ) {
                 this.vechileArmAnimation();
                 gsap.to(globals.pixiGame.capacityFullText, {
