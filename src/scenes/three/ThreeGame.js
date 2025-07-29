@@ -44,6 +44,8 @@ export default class ThreeGame {
     this.walls = [];
     this.plans = [];
     this.gateCollider = null;
+    this.garageAreaGreenBg = null;
+    this.sellAreaGreenBg = null;
 
     globals.threeUpdateList = [];
     this.sellPoint = null;
@@ -135,6 +137,16 @@ export default class ThreeGame {
     map.traverse((child) => {
       child.castShadow = true;
       child.receiveShadow = true;
+      if (child.name == 'sell_bg') {
+        this.sellAreaGreenBg = child;
+        child.scale.setScalar(0);
+        //2.3 normal scale
+      }
+      if (child.name == 'upgrade_vehicle_bg') {
+        this.garageAreaGreenBg = child;
+        child.scale.setScalar(0);
+        //2.3 normal scale
+      }
       if (child.name == 'green_trees_parent') {
         this.treeMeshes.push(...child.children);
       }
@@ -480,6 +492,15 @@ export default class ThreeGame {
         gsap.delayedCall(0.05, () => {
           this.sellingLogs = false;
         });
+        if (this.sellAreaGreenBg.scale.x > 0) {
+          gsap.to(this.sellAreaGreenBg.scale, {
+            x: 0,
+            y: 0,
+            z: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          });
+        }
       }
 
       this.removeJunksNearArea(
@@ -504,6 +525,15 @@ export default class ThreeGame {
           this.harvester.moveVechileToUpgradeArea(
             this.garageArea.getWorldPosition(new THREE.Vector3())
           );
+          if (this.garageAreaGreenBg.scale.x > 0) {
+            gsap.to(this.garageAreaGreenBg.scale, {
+              x: 0,
+              y: 0,
+              z: 0,
+              duration: 0.5,
+              ease: 'power2.out',
+            });
+          }
           if (!this.isFirstUpgrade) {
             this.isFirstUpgrade = true;
             globals.pixiGame.helperCont.visible = false;
