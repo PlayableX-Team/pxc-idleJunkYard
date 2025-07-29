@@ -56,7 +56,7 @@ export default class Harvester extends THREE.Object3D {
   }
 
   start() {
-    this.model.position.set(0, 0, 0);
+    this.model.position.set(0, 0.5, 0);
     this.model.scale.set(1, 1, 1);
 
     this.log_locs = [];

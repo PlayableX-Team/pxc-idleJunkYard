@@ -73,7 +73,7 @@ export default class ThreeGame {
     globals.treesCut = 0;
     globals.upgradesPurchased = 0;
 
-    globals.tutorialTarget = new THREE.Vector3(3, 0, -27);
+    globals.tutorialTarget = new THREE.Vector3(5, 0, -32);
     this.createLvl1Junks();
     this.createLvl2Junks();
     this.addGroundCollider();
