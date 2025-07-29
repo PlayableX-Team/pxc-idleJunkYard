@@ -35,8 +35,9 @@ export class ThreeRenderer {
     // Basic light setup with shadows
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(0, 100, 0);
+    directionalLight.position.set(-30, 50, -10);
     directionalLight.castShadow = true;
+    this.directionalLight = directionalLight;
 
     // Configure shadow properties
     directionalLight.shadow.mapSize.width = 1024;
@@ -99,6 +100,15 @@ export class ThreeRenderer {
     this.renderer.render(this.scene, this.camera);
     if (globals.quarksPool && globals.quarksPool.update) {
       globals.quarksPool.update(delta);
+    }
+
+    if (globals.harvester) {
+      this.directionalLight.position.set(
+        -30 + globals.harvester.position.x,
+        50 + globals.harvester.position.y,
+        -10 + globals.harvester.position.z
+      );
+      this.directionalLight.target.position.copy(globals.harvester.position);
     }
   }
 }

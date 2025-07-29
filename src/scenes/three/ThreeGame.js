@@ -426,6 +426,13 @@ export default class ThreeGame {
         price
       );
 
+      junk.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+
       junk.quaternion.copy(worldQuaternion);
       junk.addPhysicsBody();
       this.junks.push(junk);

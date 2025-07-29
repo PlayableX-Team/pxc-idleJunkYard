@@ -38,8 +38,12 @@ export default class Harvester extends THREE.Object3D {
     // Quark referanslarını saklamak için değişkenler
     this.magnetGroundQuark = null;
     this.carSmokeQuarks = [];
-    this.castShadow = true;
-    this.receiveShadow = true;
+    this.model.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
 
     this.start();
 
