@@ -41,21 +41,8 @@ export default class Junk extends THREE.Object3D {
     // Quaternion'ı da kopyala
     this.body.quaternion.copy(this.quaternion);
 
-    // Yüksek sürtünme için material oluştur
-    // const junkMaterial = new CANNON.Material('junk');
-    // junkMaterial.friction = 1; // Yüksek sürtünme (0-1 arası, 1 en yüksek)
-    // junkMaterial.frictionEquationStiffness = 1e8;
-    // junkMaterial.frictionEquationRelaxation = 3;
-    // junkMaterial.restitution = 0.01; // Düşük zıplama (daha stabil)
-
-    // this.body.material = junkMaterial;
-
-    // // Linear ve angular damping ekleyerek kayma ve dönmeyi azalt
     this.body.linearDamping = 0.01; // Lineer hareketi yavaşlat
     this.body.angularDamping = 0.01; // Açısal hareketi yavaşlat
-
-    // Body'yi sleep state'e sokma
-    //this.sleepBody();
   }
 
   // Body'yi sleep state'e sokma metodu

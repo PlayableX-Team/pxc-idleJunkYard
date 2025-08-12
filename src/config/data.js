@@ -63,6 +63,12 @@ const data = window.gameData ?? {
   gameButtonTextFontStrokeThickness: 5,
   gameButtonTextScale: 1,
 
+  //MAP VİSUAL
+  isRoadOpen: false,
+  isVechileShadowOpen: false,
+  vechileUpgradeTextRotation: Math.PI / 2,
+  vechileSellTextRotation: -Math.PI / 2,
+
   //MONEY
   userStartMoney: 0,
 
@@ -73,22 +79,22 @@ const data = window.gameData ?? {
   lvl1Junk1Price: 10, // label: tire model price
   lvl1Junk1Health: 2, // label: tire model health
   lvl1Junk2Price: 20, // label: washing machine model price
-  lvl1Junk2Health: 2, // label: washing machine model health
+  lvl1Junk2Health: 4, // label: washing machine model health
   lvl1Junk3Price: 30, // label: grill model price
-  lvl1Junk3Health: 2, // label: grill model health
+  lvl1Junk3Health: 6, // label: grill model health
   lvl1Junk4Price: 40, // label: window model price
-  lvl1Junk4Health: 2, // label: window model health
+  lvl1Junk4Health: 8, // label: window model health
 
   lvl2Junk1Price: 10, // label: barrel model price
   lvl2Junk1Health: 2, // label: barrel model health
   lvl2Junk2Price: 20, // label: distorted barrel model price
-  lvl2Junk2Health: 2, // label: distorted barrel model health
+  lvl2Junk2Health: 4, // label: distorted barrel model health
   lvl2Junk3Price: 30, // label: tv model price
-  lvl2Junk3Health: 2, // label: tv model health
+  lvl2Junk3Health: 6, // label: tv model health
   lvl2Junk4Price: 40, // label: trash bin model price
-  lvl2Junk4Health: 2, // label: trash bin model health
+  lvl2Junk4Health: 8, // label: trash bin model health
   lvl2Junk5Price: 50, // label: capsule model price
-  lvl2Junk5Health: 2, // label: capsule model health
+  lvl2Junk5Health: 10, // label: capsule model health
 
   //POWERUPS CONFIG
   powerUpPanelScale: 1,
@@ -165,6 +171,7 @@ const data = window.gameData ?? {
   capacityFullVechileArmAnimationColor: '#990000',
   arrowScale: 1.6,
   arrowColor: '#00ff00',
+  vechileMovementRotationSpeed: 0.5,
 
   //HELPER SCREEN
   helperBoxSrc: null,

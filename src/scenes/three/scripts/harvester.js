@@ -41,8 +41,8 @@ export default class Harvester extends THREE.Object3D {
     this.carSmokeQuarks = [];
     this.model.traverse((child) => {
       if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
+        child.castShadow = data.isVechileShadowOpen;
+        child.receiveShadow = data.isVechileShadowOpen;
       }
     });
 
@@ -440,39 +440,6 @@ export default class Harvester extends THREE.Object3D {
       currentRotation - this.previousRotation
     );
 
-    // if (rotationDifference > this.rotationThreshold) {
-    //   // Rotasyon değişiyor - magnet sallanmasını başlat
-    //   if (!this.magnetsSwaying) {
-    //     this.magnetsSwaying = true;
-    //     this.magnets.forEach((magnet, index) => {
-    //       if (magnet.visible) {
-    //         gsap.to(magnet.rotation, {
-    //           z: Math.cos(Date.now() * 0.01 + index) * 0.5,
-    //           duration: 0.5,
-    //           repeat: 1,
-    //           yoyo: true,
-    //           ease: 'sine.inOut',
-    //         });
-    //       }
-    //     });
-    //   }
-    // } else {
-    //   // Rotasyon değişmiyor - magnet sallanmasını durdur
-    //   if (this.magnetsSwaying) {
-    //     this.magnetsSwaying = false;
-    //     this.magnets.forEach((magnet) => {
-    //       gsap.killTweensOf(magnet.rotation);
-    //       gsap.to(magnet.rotation, {
-    //         x: 0,
-    //         z: 0,
-    //         duration: 0.6,
-    //         ease: 'power2.out',
-    //       });
-    //     });
-    //   }
-    // }
-
-    // Önceki rotasyonu güncelle
     this.previousRotation = currentRotation;
 
     // Crane'in harvester'ın rotasyonunu gecikmeli olarak takip etmesi
@@ -516,7 +483,7 @@ export default class Harvester extends THREE.Object3D {
       }
 
       // Gecikmeli interpolasyon
-      let lerpSpeed = delta * 5;
+      let lerpSpeed = delta * data.vechileMovementRotationSpeed;
       let newWorldAngle = craneCurrentAngle + angleDiff * lerpSpeed;
 
       // Yeni açıyı normalize et

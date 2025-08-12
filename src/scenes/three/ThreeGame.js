@@ -216,6 +216,9 @@ export default class ThreeGame {
         child.scale.setScalar(0);
         //2.3 normal scale
       }
+      if (child.name == 'way_parent') {
+        child.visible = data.isRoadOpen;
+      }
       if (child.name == 'upgrade_vehicle_bg') {
         this.garageAreaGreenBg = child;
         child.scale.setScalar(0);
@@ -299,6 +302,19 @@ export default class ThreeGame {
         this.garageArea = child;
         // child.visible = false;
       }
+      //Garage area rotation
+      if (child.name == 'Plane088') {
+        child.rotation.y = data.vechileUpgradeTextRotation;
+      }
+      //Sell area rotation
+      if (child.name == 'Plane099') {
+        child.rotation.y = data.vechileSellTextRotation;
+      }
+      //Sell area rotation
+      if (child.name == 'Plane167') {
+        child.rotation.y = data.vechileSellTextRotation;
+      }
+
       if (child.name == 'truck') {
         child.scale.setScalar(1.6);
         this.truck = child;
