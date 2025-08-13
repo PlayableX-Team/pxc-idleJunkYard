@@ -72,13 +72,13 @@ const assets = {
 
     {
       name: 'map',
-      src: require('@assets/models/map13.glb'),
+      src: require('@assets/models/map14.glb'),
       type: 'glb',
     },
 
     {
       name: 'tyre-v1',
-      src: require('@assets/models/junks/tyre-last.glb'),
+      src: require('@assets/models/junks/tyre-v3.glb'),
       type: 'glb',
     },
     {
@@ -88,37 +88,37 @@ const assets = {
     },
     {
       name: 'junk_00-v1',
-      src: require('@assets/models/junks/junk_00-v2.glb'),
+      src: require('@assets/models/junks/junk_00-v3.glb'),
       type: 'glb',
     },
     {
       name: 'junk_06-v1',
-      src: require('@assets/models/junks/junk_06-v2.glb'),
+      src: require('@assets/models/junks/junk_06-v3.glb'),
       type: 'glb',
     },
     {
       name: 'junk_02-v1',
-      src: require('@assets/models/junks/junk_02-v2.glb'),
+      src: require('@assets/models/junks/junk_02-v3.glb'),
       type: 'glb',
     },
     {
       name: 'junk_04-v1',
-      src: require('@assets/models/junks/junk_04-v2.glb'),
+      src: require('@assets/models/junks/junk_04-v3.glb'),
       type: 'glb',
     },
     {
       name: 'tv-v1',
-      src: require('@assets/models/junks/tv-v2.glb'),
+      src: require('@assets/models/junks/tv-v3.glb'),
       type: 'glb',
     },
     {
       name: 'junk_10-v1',
-      src: require('@assets/models/junks/junk_10-v2.glb'),
+      src: require('@assets/models/junks/junk_10-v3.glb'),
       type: 'glb',
     },
     {
       name: 'junk_08-v1',
-      src: require('@assets/models/junks/junk_08-v2.glb'),
+      src: require('@assets/models/junks/junk_08-v3.glb'),
       type: 'glb',
     },
     {

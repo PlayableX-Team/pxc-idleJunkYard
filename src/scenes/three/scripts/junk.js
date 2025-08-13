@@ -18,6 +18,32 @@ export default class Junk extends THREE.Object3D {
     super();
     this.animations = {};
     this.model = globals.cloneModel(model);
+
+    // // Modelin metalik değerini artır
+    // this.model.traverse((child) => {
+    //   if (child.isMesh && child.material) {
+    //     if (Array.isArray(child.material)) {
+    //       // Eğer material bir array ise, her materyal için işlem yap
+    //       child.material.forEach((material) => {
+    //         if (
+    //           material.isMeshStandardMaterial ||
+    //           material.isMeshPhysicalMaterial
+    //         ) {
+    //           material.metalness = 0.5; // Metalik değerini 0.3 artır, maksimum 1.0
+    //         }
+    //       });
+    //     } else {
+    //       // Tek materyal ise
+    //       if (
+    //         child.material.isMeshStandardMaterial ||
+    //         child.material.isMeshPhysicalMaterial
+    //       ) {
+    //         child.material.metalness = 1; // Metalik değerini 0.3 artır, maksimum 1.0
+    //       }
+    //     }
+    //   }
+    // });
+
     this.scale.setScalar(scale);
     this.add(this.model);
     this.position.copy(position);
