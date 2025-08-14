@@ -8,7 +8,7 @@ import * as CANNON from 'cannon-es';
 export default class Junk extends THREE.Object3D {
   constructor(
     model,
-    scale = 1,
+    scale,
     position = new THREE.Vector3(0, 0, 0),
     rotation = new THREE.Vector3(0, 0, 0),
     body = null,
@@ -44,7 +44,8 @@ export default class Junk extends THREE.Object3D {
     //   }
     // });
 
-    this.scale.setScalar(scale);
+    this.scale.setScalar(1.5);
+    this.baseScale = this.scale.x;
     this.add(this.model);
     this.position.copy(position);
     // this.rotation.copy(rotation);
@@ -52,7 +53,7 @@ export default class Junk extends THREE.Object3D {
     this.body = body;
     this.health = health;
     this.price = price;
-    gsap.delayedCall(0.3, () => {
+    gsap.delayedCall(0.5, () => {
       this.sleepBody();
     });
   }

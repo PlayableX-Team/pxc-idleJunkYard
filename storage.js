@@ -26,9 +26,91 @@ function collectStorage(data) {
   data.cashSoundSrc = storage.cash.items.cash.src;
   data.newLevelSoundSrc = storage.newLevel.items.newLevel.src;
   data.tapSoundSrc = storage.tap.items.tap.src;
+  data.vechileBodyTextureSrc =
+    storage.vehicleBodyTexture.items.vehicleBodyTextureRed.src;
+  data.vechileArmTextureSrc =
+    storage.vehicleArmTexture.items.vehicleArmTextureRed.src;
 }
 
 const storage = {
+  vehicleBodyTexture: {
+    label: 'Vehicle Body Texture',
+    description: 'Uploaded Vehicle Body Texture for the game.',
+    aiDescription: 'a collection of Vehicle Body Texture for branding',
+    items: {
+      vehicleBodyTextureRed: {
+        label: 'Vehicle Body Texture Red',
+        description: 'The Vehicle Body Texture Red for the game.',
+        aiDescription: 'Vehicle Body Texture Red used in game',
+        src: require('./assets/textures/Vehicle_Red_Texture_Body.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+      vehicleBodyTextureGreen: {
+        label: 'Vehicle Body Texture Green',
+        description: 'The Vehicle Body Texture Green for the game.',
+        aiDescription: 'Vehicle Body Texture Green used in game',
+        src: require('./assets/textures/Vehicle_Green_Texture_Body.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+      vehicleBodyTextureBlue: {
+        label: 'Vehicle Body Texture Blue',
+        description: 'The Vehicle Body Texture Blue for the game.',
+        aiDescription: 'Vehicle Body Texture Blue used in game',
+        src: require('./assets/textures/Vehicle_Blue_Texture_Body.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+      vehicleBodyTextureYellow: {
+        label: 'Vehicle Body Texture Yellow',
+        description: 'The Vehicle Body Texture Yellow for the game.',
+        aiDescription: 'Vehicle Body Texture Yellow used in game',
+        src: require('./assets/textures/Vehicle_Yellow_Texture_Body.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+    },
+  },
+  vehicleArmTexture: {
+    label: 'Vehicle Arm Texture',
+    description: 'Uploaded Vehicle Arm Texture for the game.',
+    aiDescription: 'a collection of Vehicle Arm Texture for branding',
+    items: {
+      vehicleArmTextureRed: {
+        label: 'Vehicle Arm Texture Red',
+        description: 'The Vehicle Arm Texture Red for the game.',
+        aiDescription: 'Vehicle Arm Texture Red used in game',
+        src: require('./assets/textures/Vehicle_Red_Texture_Arm.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+      vehicleArmTextureGreen: {
+        label: 'Vehicle Arm Texture Green',
+        description: 'The Vehicle Arm Texture Green for the game.',
+        aiDescription: 'Vehicle Arm Texture Green used in game',
+        src: require('./assets/textures/Vehicle_Green_Texture_Arm.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+      vehicleArmTextureBlue: {
+        label: 'Vehicle Arm Texture Blue',
+        description: 'The Vehicle Arm Texture Blue for the game.',
+        aiDescription: 'Vehicle Arm Texture Blue used in game',
+        src: require('./assets/textures/Vehicle_Blue_Texture_Arm.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+      vehicleArmTextureYellow: {
+        label: 'Vehicle Arm Texture Yellow',
+        description: 'The Vehicle Arm Texture Yellow for the game.',
+        aiDescription: 'Vehicle Arm Texture Yellow used in game',
+        src: require('./assets/textures/Vehicle_Yellow_Texture_Arm.png'),
+        type: 'image',
+        previewIcon: 'base64-preview-primary',
+      },
+    },
+  },
   tap: {
     label: 'Tap',
     description: 'Uploaded Tap for the game.',

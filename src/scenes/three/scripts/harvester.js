@@ -44,6 +44,24 @@ export default class Harvester extends THREE.Object3D {
         child.castShadow = data.isVechileShadowOpen;
         child.receiveShadow = data.isVechileShadowOpen;
       }
+      if (child.name == 'Mesh017') {
+        child.material = new THREE.MeshStandardMaterial({
+          map: globals.cloneTexture('Vehicle_Body_Texture'),
+        });
+      }
+      let newMat = null;
+      if (child.name == 'Mesh016') {
+        child.material = new THREE.MeshStandardMaterial({
+          map: globals.cloneTexture('Vehicle_Arm_Texture'),
+        });
+        newMat = child.material;
+        newMat.map = globals.cloneTexture('Vehicle_Arm_Texture');
+      }
+      if (child.name == 'Mesh014') {
+        child.material = new THREE.MeshStandardMaterial({
+          map: globals.cloneTexture('Vehicle_Arm_Texture'),
+        });
+      }
     });
 
     this.start();
@@ -559,9 +577,9 @@ export default class Harvester extends THREE.Object3D {
           if (!trackingData.isShaking) {
             trackingData.isShaking = true;
             gsap.to(junk.scale, {
-              x: '+=0.2',
-              y: '+=0.2',
-              z: '+=0.2',
+              x: junk.scale.x + 0.2,
+              y: junk.scale.y + 0.2,
+              z: junk.scale.z + 0.2,
               duration: 0.1,
               yoyo: true,
               repeat: -1,
@@ -622,6 +640,7 @@ export default class Harvester extends THREE.Object3D {
             onStart: () => {
               // Ses efekti çal
               gsap.killTweensOf(junk.scale);
+              let baseScale = junk.scale.x;
               // Rastgele rotasyon animasyonu ekle
               gsap.to(junk.rotation, {
                 x: Math.random() * Math.PI * 2,
@@ -637,7 +656,7 @@ export default class Harvester extends THREE.Object3D {
               if (globals.collectedJunks == data.junkCollectedForStore) {
                 openStorePage();
               }
-              junk.scale.set(1, 1, 1);
+              junk.scale.set(baseScale, baseScale, baseScale);
               if (
                 this.junksLoaded.length >=
                 globals.threeGame.capacity + globals.extraCapacity
@@ -721,7 +740,7 @@ export default class Harvester extends THREE.Object3D {
 
           // Scale animasyonunu durdur (eğer varsa)
           gsap.killTweensOf(junk.scale);
-          junk.scale.set(1, 1, 1); // Scale'i normale döndür
+          junk.scale.set(junk.baseScale, junk.baseScale, junk.baseScale); // Scale'i normale döndür
 
           this.junkHealthTracking.delete(junk);
         }

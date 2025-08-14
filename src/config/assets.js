@@ -66,13 +66,13 @@ const assets = {
   three: [
     {
       name: 'harvester1',
-      src: require('@assets/models/vehicle-v5.glb'),
+      src: require('@assets/models/vehicle-v7.glb'),
       type: 'glb',
     },
 
     {
       name: 'map',
-      src: require('@assets/models/map14.glb'),
+      src: require('@assets/models/Map20-v1.glb'),
       type: 'glb',
     },
 
@@ -167,6 +167,20 @@ const assets = {
 };
 
 export function insertAssets(data) {
+  if (data.vechileBodyTextureSrc) {
+    assets.three_textures.push({
+      name: 'Vehicle_Body_Texture',
+      src: data.vechileBodyTextureSrc,
+      type: 'texture',
+    });
+  }
+  if (data.vechileArmTextureSrc) {
+    assets.three_textures.push({
+      name: 'Vehicle_Arm_Texture',
+      src: data.vechileArmTextureSrc,
+      type: 'texture',
+    });
+  }
   if (data.upgradeSoundSrc) {
     assets.audio.upgrade = {
       src: data.upgradeSoundSrc,

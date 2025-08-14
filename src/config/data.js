@@ -73,7 +73,7 @@ const data = window.gameData ?? {
   userStartMoney: 0,
 
   //LVL2
-  junkSelledForLvl2: 100, // max 110 min 50 step:1
+  junkSelledForLvl2: 5, // max 110 min 50 step:1
 
   //JUNK OPTİONS
   lvl1Junk1Price: 10, // label: tire model price
@@ -104,7 +104,7 @@ const data = window.gameData ?? {
   powerUpPanelPosYHorizontal: 0.5,
 
   magnetPowerCost: 100,
-  magnetPowerUpgradeEffect: 0.5, // min 0.1 max100 step:0.1
+  magnetPowerUpgradeEffect: 1, // min 0.1 max100 step:0.1
   magbetPowerStartAmount: 1, // min 1 max100 step:1
   magnetPowerText: 'Magnet Power',
   isMagneyPowerupOn: true,
@@ -172,6 +172,8 @@ const data = window.gameData ?? {
   arrowScale: 1.6,
   arrowColor: '#00ff00',
   vechileMovementRotationSpeed: 0.5,
+  vechileBodyTextureSrc: null,
+  vechileArmTextureSrc: null,
 
   //HELPER SCREEN
   helperBoxSrc: null,
