@@ -72,7 +72,7 @@ const assets = {
 
     {
       name: 'map',
-      src: require('@assets/models/Map20-v1.glb'),
+      src: require('@assets/models/Map21-v1.glb'),
       type: 'glb',
     },
 

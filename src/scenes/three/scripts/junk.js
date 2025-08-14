@@ -44,7 +44,7 @@ export default class Junk extends THREE.Object3D {
     //   }
     // });
 
-    this.scale.setScalar(1.5);
+    this.scale.setScalar(scale);
     this.baseScale = this.scale.x;
     this.add(this.model);
     this.position.copy(position);

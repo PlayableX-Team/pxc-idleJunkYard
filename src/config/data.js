@@ -73,7 +73,7 @@ const data = window.gameData ?? {
   userStartMoney: 0,
 
   //LVL2
-  junkSelledForLvl2: 5, // max 110 min 50 step:1
+  junkSelledForLvl2: 80, // max 110 min 50 step:1
 
   //JUNK OPTİONS
   lvl1Junk1Price: 10, // label: tire model price

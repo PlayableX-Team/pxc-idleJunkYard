@@ -520,7 +520,7 @@ export default class ThreeGame {
 
       const junk = new Junk(
         modelName,
-        1,
+        1.6,
         worldPosition,
         new THREE.Vector3(0, 0, 0),
         null,

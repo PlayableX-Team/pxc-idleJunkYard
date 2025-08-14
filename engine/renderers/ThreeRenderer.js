@@ -33,11 +33,12 @@ export class ThreeRenderer {
     this.renderer.domElement.style.touchAction = 'none'; // Disable touch actions
 
     // Basic light setup with shadows
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 3);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.position.set(-30, 50, -10);
     directionalLight.castShadow = true;
     this.directionalLight = directionalLight;
+    this.ambientLight = ambientLight;
 
     // Configure shadow properties
     directionalLight.shadow.mapSize.width = 1024;

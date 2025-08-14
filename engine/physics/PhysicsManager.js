@@ -2,13 +2,17 @@ import * as CANNON from 'cannon-es';
 import { CannonDebugger } from './CannonDebugger';
 import globals from '../../globals';
 import { Box3, Vector3 } from 'three';
+import gsap from 'gsap';
 
 export class PhysicsManager {
   constructor(debug = false) {
     this.world = new CANNON.World({
-      gravity: new CANNON.Vec3(0, -9.82, 0),
+      gravity: new CANNON.Vec3(0, -300, 0),
     });
     this.removeList = new Set();
+    gsap.delayedCall(0.5, () => {
+      this.world.gravity.set(0, -9.82, 0);
+    });
 
     if (debug) {
       this.debugger = new CannonDebugger(globals.threeScene, this.world, {
