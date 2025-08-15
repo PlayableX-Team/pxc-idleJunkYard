@@ -13,7 +13,8 @@ export default class Junk extends THREE.Object3D {
     rotation = new THREE.Vector3(0, 0, 0),
     body = null,
     health,
-    price
+    price,
+    canCollect = true
   ) {
     super();
     this.animations = {};
@@ -53,6 +54,7 @@ export default class Junk extends THREE.Object3D {
     this.body = body;
     this.health = health;
     this.price = price;
+    this.canCollect = canCollect;
     gsap.delayedCall(0.5, () => {
       this.sleepBody();
     });

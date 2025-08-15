@@ -545,6 +545,7 @@ export default class Harvester extends THREE.Object3D {
     );
 
     globals.availableJunks.forEach((junk) => {
+      if (!junk.canCollect) return;
       if (
         this.junksLoaded.length >=
         globals.threeGame.capacity + globals.extraCapacity

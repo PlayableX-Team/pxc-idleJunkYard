@@ -435,24 +435,28 @@ export default class ThreeGame {
         points: this.tyreObjectPoints,
         health: this.lvl1Junk1Health,
         price: this.lvl1Junk1Price,
+        canCollect: true,
       },
       {
         model: 'junk_07-v1',
         points: this.washingMachinePoints,
         health: this.lvl1Junk2Health,
         price: this.lvl1Junk2Price,
+        canCollect: true,
       },
       {
         model: 'junk_00-v1',
         points: this.grillPoints,
         health: this.lvl1Junk3Health,
         price: this.lvl1Junk3Price,
+        canCollect: true,
       },
       {
         model: 'junk_06-v1',
         points: this.windowPoints,
         health: this.lvl1Junk4Health,
         price: this.lvl1Junk4Price,
+        canCollect: true,
       },
     ];
 
@@ -466,30 +470,35 @@ export default class ThreeGame {
         points: this.lvl2barrelPoints,
         health: this.lvl2Junk1Health,
         price: this.lvl2Junk1Price,
+        canCollect: false,
       },
       {
         model: 'junk_04-v1',
         points: this.lvl2distortedBarrelPoints,
         health: this.lvl2Junk2Health,
         price: this.lvl2Junk2Price,
+        canCollect: false,
       },
       {
         model: 'tv-v1',
         points: this.lvl2tvPoints,
         health: this.lvl2Junk3Health,
         price: this.lvl2Junk3Price,
+        canCollect: false,
       },
       {
         model: 'junk_10-v1',
         points: this.lvl2trashPoints,
         health: this.lvl2Junk4Health,
         price: this.lvl2Junk4Price,
+        canCollect: false,
       },
       {
         model: 'junk_08-v1',
         points: this.lvl2capsulePoints,
         health: this.lvl2Junk5Health,
         price: this.lvl2Junk5Price,
+        canCollect: false,
       },
     ];
 
@@ -508,12 +517,13 @@ export default class ThreeGame {
         config.model,
         config.points,
         config.health,
-        config.price
+        config.price,
+        config.canCollect
       );
     });
   }
 
-  createJunksFromPoints(modelName, points, health, price) {
+  createJunksFromPoints(modelName, points, health, price, canCollect) {
     points.forEach((point, index) => {
       const worldPosition = point.getWorldPosition(new THREE.Vector3());
       const worldQuaternion = point.getWorldQuaternion(new THREE.Quaternion());
@@ -525,7 +535,8 @@ export default class ThreeGame {
         new THREE.Vector3(0, 0, 0),
         null,
         health,
-        price
+        price,
+        canCollect
       );
 
       junk.traverse((child) => {
@@ -875,6 +886,9 @@ export default class ThreeGame {
               // Kamera hareketini tekrar aktifleştir
               this.canFollow = true;
               this.harvester.canMove = true;
+              this.junks.forEach((junk) => {
+                junk.canCollect = true;
+              });
             },
           });
         });
